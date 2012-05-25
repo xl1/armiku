@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<script type="text/x-vertex-shader" id="vshader">
+uniform   mat4 uPerspective;
+uniform   mat4 uModelView;
+attribute vec3 aPosition;
+attribute vec2 aTexCoord;
+varying   vec2 vTexCoord;
+
+void main(){
+  vec4 position = uModelView * vec4(aPosition.xyz, 1.0);
+  gl_Position = uPerspective * vec4(position.xyz, 1.0);
+  vTexCoord = aTexCoord;
+}
+</script>
+<script type="text/x-fragment-shader" id="fshader">
+precision mediump float;
+
+uniform sampler2D uSampler;
+varying vec2 vTexCoord;
+
+void main(){
+  vec4 color = texture2D(uSampler, vTexCoord);
+  if(color.a < 1.0){
+    discard;
+  } else {
+    gl_FragColor = color;
+  }
+}
+</script>
+<script src="../xlib/microgl.js"></script>
+<script src="../xlib/webcam.js"></script>
+<script src="../js-aruco/cv.js"></script>
+<script src="../js-aruco/aruco.js"></script>
+<script src="armarker.js"></script>
