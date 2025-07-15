@@ -13,8 +13,5 @@ class window.WebCam
     , false)
     setSourceURL = (src) =>
       @video.srcObject = src
-    
-    try
-      userMedia.call(navigator, video: true, setSourceURL, failCallback)
-    catch e
-      userMedia.call(navigator, 'video', setSourceURL, failCallback)
+
+    userMedia.call(navigator, video: facingMode: 'environment', setSourceURL, failCallback)

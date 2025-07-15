@@ -17,13 +17,11 @@
       setSourceURL = __bind(function(src) {
         return this.video.srcObject = src;
       }, this);
-      try {
-        userMedia.call(navigator, {
-          video: true
-        }, setSourceURL, failCallback);
-      } catch (e) {
-        userMedia.call(navigator, 'video', setSourceURL, failCallback);
-      }
+      userMedia.call(navigator, {
+        video: {
+          facingMode: 'environment'
+        }
+      }, setSourceURL, failCallback);
     }
     return WebCam;
   })();
