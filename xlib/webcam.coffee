@@ -12,8 +12,7 @@ class window.WebCam
       canplayCallback?()
     , false)
     setSourceURL = (src) =>
-      url = window.URL or window.webkitURL
-      @video.src = if url then url.createObjectURL(src) else src
+      @video.srcObject = src
     
     try
       userMedia.call(navigator, video: true, setSourceURL, failCallback)

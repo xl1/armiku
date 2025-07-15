@@ -15,9 +15,7 @@
         return typeof canplayCallback === "function" ? canplayCallback() : void 0;
       }, this), false);
       setSourceURL = __bind(function(src) {
-        var url;
-        url = window.URL || window.webkitURL;
-        return this.video.src = url ? url.createObjectURL(src) : src;
+        return this.video.srcObject = src;
       }, this);
       try {
         userMedia.call(navigator, {
